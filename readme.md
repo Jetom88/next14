@@ -63,3 +63,15 @@
 
   1. 모든 컴포넌트는 ssr이 됨<br/>
      "use client"는 client에서 render가 아닌 server에서 render임 (csr이라면 보이지 않았을 ui가 html 상에서 보이고, console.log가 터미널에서 출력 되는것을 볼 수 있음)
+     <br/>
+
+### hydration
+
+<hr/>
+
+<b>hydation은 정적 html에 클라이언트 사이드 js를 결합하는 과정을 의미</b> (이해가 안가서 chatGPT의 개념을 차용.. 😅)
+
+사용자가 최초 html을 본 뒤에 일어나는 과정이 기준이 됨 <br/>
+
+- "/about-us"로 간다고 가정 <br/>
+  /about-us 링크 클릭 -> next는 요청을 보고 components를 dummy html로 변환(back-end에서 생성됨) -> 사용자가 페이지에 도착하는 즉시 load 시작 -> html에 새로운 react application을 초기화 -> interactive한 components가 됨(이때 이벤트 리스너가 동작함)
