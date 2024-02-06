@@ -75,3 +75,16 @@
 
 - "/about-us"로 간다고 가정 <br/>
   /about-us 링크 클릭 -> next는 요청을 보고 components를 dummy html로 변환(back-end에서 생성됨) -> 사용자가 페이지에 도착하는 즉시 load 시작 -> html에 새로운 react application을 초기화 -> interactive한 components가 됨(이때 이벤트 리스너가 동작함)
+
+### use client
+
+<hr/>
+
+<b>back-end에서 render되고 front-end에서 hydrate 및 init됨을 의미함</b> <br/>
+(server components는 server에서 render되고 hydrate는 되지 않음)
+
+use client를 쓰지 않으면 server component로 인식
+
+use client를 쓰는 기준은 useState나 onClick events 같은 것들이 없을 경우(= interactive한 동작이 없는 경우)
+
+다른 components는 server components로 render되고, js를 다운받지 않기 때문에 페이지 로딩 속도가 빨라짐(use client를 가진 components의 js 코드만 다운받기 때문)
