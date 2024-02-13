@@ -1,14 +1,23 @@
-// page의 head 부분에 표시되는 내용
-// 메타데이터는 중첩이 되는것이 아니라 합쳐짐
-// 클라이언트 컴포넌트에서는 메타데이터를 내보낼 수 없고, 서버 컴포넌트에서만 있을 수 있음
-export const metadata = {
-  title: "Home",
-};
+"use client";
+
+import { useEffect, useState } from "react";
 
 export default function Page() {
-  return (
-    <div>
-      <h1>Hello!</h1>
-    </div>
-  );
+  const [isLoding, setIsLoding] = useState(true);
+  const [movies, setMovies] = useState([]);
+  const getMovies = async () => {
+    const res = await fetch(
+      "https://nomad-movies.nomadcoders.workers.dev/movies"
+    );
+
+    const json = await res.json();
+
+    setMovies(json);
+    setIsLoding(false);
+  };
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+  return <div>{isLoding ? "Loding..." : JSON.stringify(movies)}</div>;
 }
