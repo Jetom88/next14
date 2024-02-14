@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
 
 async function getMovies() {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+  await new Promise((resolve) => setTimeout(resolve, 10000));
 
   // front에서 console.log가 찍히지않고, 백엔드에서 찍히는 console.log임
   console.log("fetching");
