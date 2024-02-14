@@ -1,12 +1,22 @@
-// dynamic routes를 사용 하는 방법
+import { API_URL } from "../../../(home)/page";
 
-export default function MovieDetail({
+async function getMovie(id: string) {
+  const res = await fetch(`${API_URL}/${id}`);
+  return res.json();
+}
+
+async function getVideos(id: string) {
+  const res = await fetch(`${API_URL}/${id}/videos`);
+  return res.json();
+}
+
+export default async function MovieDetail({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  // back-end에서 render되기 때문에 console.log(props)를 하면 터미널 창에서 어떤 props가 있는지 확인 가능
-  // params의 id는 [id]에서 온 것
-  console.log(id);
-  return <h1>Movie {id}</h1>;
+  // await이 여러개면 순차적으로 처리함 따라서 비동기적으로 동시에 실행하기 위해 Promise.all로 병렬 실행을 해줘야함
+  const [movie, vidoes] = await Promise.all([getMovie(id), getVideos(id)]);
+
+  return <h1>{movie.title}</h1>;
 }
