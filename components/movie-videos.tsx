@@ -1,11 +1,8 @@
 import { API_URL } from "../app/(home)/page";
 
 async function getVideos(id: string) {
-  // const res = await fetch(`${API_URL}/${id}/videos`);
-  // return res.json();
-
-  await new Promise((res) => setTimeout(res, 3000));
-  throw new Error("error");
+  const res = await fetch(`${API_URL}/${id}/videos`);
+  return res.json();
 }
 
 //video만 render하는 component

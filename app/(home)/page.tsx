@@ -1,5 +1,6 @@
 import { Metadata } from "next";
-import Link from "next/link";
+import Movie from "../../components/movie";
+import styles from "../../styles/home.module.css";
 
 // next가 자동으로 fetch된 url을 캐싱해줌 (next가 어떤 데이터를 얻었는지 기억함)
 // 브라우저는 fetch 하지 않은 상태!
@@ -20,11 +21,14 @@ async function getMovies() {
 export default async function HomePage() {
   const movies = await getMovies();
   return (
-    <div>
+    <div className={styles.container}>
       {movies.map((movie) => (
-        <li key={movie.id}>
-          <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
-        </li>
+        <Movie
+          key={movie.id}
+          id={movie.id}
+          poster_path={movie.poster_path}
+          title={movie.title}
+        />
       ))}
     </div>
   );
