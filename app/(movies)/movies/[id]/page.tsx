@@ -11,8 +11,6 @@ export default async function MovieDetail({
 }) {
   return (
     <div>
-      <h3>Movie detail page</h3>
-
       {/* suspense를 사용함에 따라 어느 부분이 로딩 상태여야 하는지 명시해줄 수 있게 됨*/}
       <Suspense fallback={<h1>Loding movie info</h1>}>
         <MovieInfo id={id} />
